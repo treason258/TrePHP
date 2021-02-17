@@ -41,7 +41,7 @@
 			 	}
 
 			 	function current() {
-					return "<td style='width:150px;border:1px solid black;'>" . parent::current() . "</td>";
+					return "<td style='width:120px;border:1px solid black;'>" . parent::current() . "</td>";
 				}
 
 				function beginChildren() {
@@ -58,12 +58,12 @@
 				echo "<p>PDO连接成功！";
 
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$stmt = $conn->prepare("select * from timeline;"); 
+				$stmt = $conn->prepare("select * from timeline_content_view;"); 
     			$stmt->execute();
 
     			// 设置结果集为关联数组
     			echo "<table style='border: solid 1px black;'>";
-				echo "<tr><th>id</th><th>date_start</th><th>date_end</th><th>type</th><th>content</th><th>comment1</th><th>comment2</th></tr>";
+				echo "<tr><th>ID</th><th>类型ID</th><th>类型</th><th>开始日期</th><th>结束日期</th><th>持续天数</th><th>内容</th><th>备注</th><th>备注2</th></tr>";
 				$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 				foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
 					echo $v;
